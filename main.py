@@ -1,11 +1,13 @@
 from main_screen import MainScreen
 from kivy.app import App
 from kivy.uix.label import Label
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
 
 
-class NotebookApp(App):
+class NotebookApp(MDApp):
     def build(self):
-        return MainScreen()
+        return MDLabel(text='Hello world!', halign='center') #MainScreen()
 
 
 if __name__ == '__main__':

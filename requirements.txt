@@ -4,6 +4,7 @@ docutils==0.16
 idna==2.10
 Kivy==2.0.0
 Kivy-Garden==0.1.4
+kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
 Pygments==2.7.3
 requests==2.25.1
 urllib3==1.26.2
