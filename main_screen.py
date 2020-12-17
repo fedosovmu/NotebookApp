@@ -1,14 +1,14 @@
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label import MDLabel
 
 
-class MainScreen(BoxLayout):
+class MainScreen(MDBoxLayout):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         self.orientation = 'vertical'
 
-        label1 = Label(text='Hello world')
+        label1 = MDLabel(text='Hello world', halign='center')
         self.add_widget(label1)
 
-        label2 = Label(text='Ololol olol')
+        label2 = MDLabel(text='Ololol olol', halign='center')
         self.add_widget(label2)
