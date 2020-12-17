@@ -1,15 +1,12 @@
-import kivy
-kivy.require('2.0.0')
-
+from main_screen import MainScreen
 from kivy.app import App
 from kivy.uix.label import Label
 
 
-class MyApp(App):
-
+class NotebookApp(App):
     def build(self):
-        return Label(text='Hello world')
+        return MainScreen()
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    NotebookApp().run()
