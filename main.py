@@ -7,12 +7,22 @@ Config.set('graphics', 'height', '640')
 from main_screen import MainScreen
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.uix.label import Label
 
+KV = '''
+BoxLayout:
+    orientation: "vertical"
+
+    MDToolbar:
+        title: "MDToolbar"
+
+    MDLabel:
+        text: "Content"
+        halign: "center"
+'''
 
 class NotebookApp(MDApp):
     def build(self):
-        return MainScreen()
+        return Builder.load_string(KV) #MainScreen()
 
 
 if __name__ == '__main__':

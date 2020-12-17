@@ -1,6 +1,5 @@
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
-from kivy.uix.label import Label
 
 
 class MainScreen(MDBoxLayout):
