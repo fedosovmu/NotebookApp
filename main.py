@@ -4,11 +4,14 @@ from kivy.lang import Builder
 from kivymd.uix.list import OneLineListItem
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.label import MDLabel
+from kivymd.stiffscroll import StiffScrollEffect
 
 
 class MainScreen(Screen):
-    pass
-
+    def __init__(self, **kwargs):
+        super(MainScreen, self).__init__(**kwargs)
+        # Установка жесткого эффекта прокрутки
+        self.ids.scroll_view.effect_cls = StiffScrollEffect
 
 class NoteScreen(Screen):
     pass
