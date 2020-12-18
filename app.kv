@@ -1,19 +1,23 @@
-GridLayout:
-    rows: 2
+<NotesListScreen>:
+    GridLayout:
+        rows: 2
 
-    MDToolbar:
-        title: app.title
-        elevation: 10
+        MDToolbar:
+            title: app.title
+            elevation: 10
 
-    MDList:
-        id: notes_list
-        OneLineListItem:
-            text: 'Test Item 1'
-        OneLineListItem:
-            text: 'Test Item 2'
-        OneLineListItem:
-            text: 'Test Item 3'
+        MDList:
+            id: notes_list
+            OneLineListItem:
+                text: 'Test Item 1'
+                on_press: root.test_event() #print('press')
+            OneLineListItem:
+                text: 'Test Item 2'
+                on_press: root.manager.current = 'note'
+            OneLineListItem:
+                text: 'Test Item 3'
 
-    #MDLabel:
-    #    text: 'Content'
-    #    halign: 'center'
+<NoteScreen>:
+    MDLabel:
+        text: 'Content'
+        halign: 'center'
