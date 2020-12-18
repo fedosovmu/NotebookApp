@@ -23,10 +23,14 @@
                     OneLineListItem:
                         text: 'Test Item 3'
                         on_press: app.go_to_note_screen(self.text)
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                padding: 10
 
-            MDIconButton:
-                icon: 'plus'
-                pos_hint: {'center_x': .5, 'center_y': .5}
+                MDFloatingActionButton:
+                    icon: 'plus'
+                    elevation: 10
 
 <NoteScreen>:
     GridLayout:
