@@ -37,7 +37,8 @@ class NotebookApp(MDApp):
         self.sm.add_widget(self.note_screen)
         return self.sm
 
-    def go_to_note_screen(self):
+    def go_to_note_screen(self, text):
+        self.note_screen.ids.content_lable.text = text + ' Content'
         self.main_screen.manager.transition.direction = 'left'
         self.main_screen.manager.current = 'note'
 
