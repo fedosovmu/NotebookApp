@@ -24,11 +24,11 @@ class MainScreen(Screen):
             )
 
 class NoteScreen(Screen):
-    pass
+    title = 'Заметка'
 
 
 class NotebookApp(MDApp):
-    title = 'Блокнот'
+    title = 'Мои заметки'
 
     def build(self):
         Builder.load_file('app.kv')
