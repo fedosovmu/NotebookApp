@@ -1,8 +1,4 @@
-import kivy
-kivy.require('2.0.0')
-from kivy.config import Config
-Config.set('graphics', 'width', '360')
-Config.set('graphics', 'height', '640')
+import config
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.list import OneLineListItem
@@ -10,39 +6,44 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.label import MDLabel
 
 
-Builder.load_file('app.kv')
+class MainScreen(Screen):
+    def main_screen_test(self):
+        print('main screen test')
 
-
-class NotesListScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        label1 = MDLabel(text='Hello world', halign='center')
-        self.add_widget(label1)
-
-    def test_event(self):
-        print('test event')
-
-class NoteScreen(Screen):
-    pass
-
-
-class NotebookApp(MDApp):
-    title = 'Блокнот'
-
-    def build(self):
-        sm = ScreenManager()
-        sm.add_widget(NotesListScreen(name='main'))
-        sm.add_widget(NoteScreen(name='note'))
-        return sm
-
-    def set_list(self):
+    def load_list(self):
         for i in range(10):
-            self.root.ids.notes_list.add_widget(
+            self.ids.notes_list.add_widget(
                 OneLineListItem(text=f'Item {i+1}')
             )
 
-    def on_start(self):
-        pass #self.set_list()
+
+class NoteScreen(Screen):
+    def note_screen_test(self):
+        print('note screen test')
+
+
+class NotebookApp(MDApp):
+    def __init__(self, **kwargs):
+        super(NotebookApp, self).__init__(**kwargs)
+        self.title = 'Блокнот'
+
+
+    def build(self):
+        Builder.load_file('app.kv')
+        self.main_screen = MainScreen(name='main')
+        self.note_screen = NoteScreen(name='note')
+        self.sm = ScreenManager()
+        self.sm.add_widget(self.main_screen)
+        self.sm.add_widget(self.note_screen)
+        return self.sm
+
+    def go_to_note_screen(self):
+        self.main_screen.manager.transition.direction = 'left'
+        self.main_screen.manager.current = 'note'
+
+    def go_to_main_screen(self):
+        self.main_screen.manager.transition.direction = 'right'
+        self.main_screen.manager.current = 'main'
 
 if __name__ == '__main__':
     NotebookApp().run()
