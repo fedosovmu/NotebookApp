@@ -6,17 +6,21 @@
             title: app.title
             elevation: 10
 
-        MDList:
-            id: notes_list
-            OneLineListItem:
-                text: 'Test Item 1'
-                on_press: app.go_to_note_screen(self.text)
-            OneLineListItem:
-                text: 'Test Item 2'
-                on_press: app.go_to_note_screen(self.text)
-            OneLineListItem:
-                text: 'Test Item 3'
-                on_press: app.go_to_note_screen(self.text)
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDList:
+                id: notes_list
+                OneLineListItem:
+                    text: 'Test Item 1'
+                    on_press: app.go_to_note_screen(self.text)
+                OneLineListItem:
+                    text: 'Test Item 2'
+                    on_press: app.go_to_note_screen(self.text)
+                OneLineListItem:
+                    text: 'Test Item 3'
+                    on_press: app.go_to_note_screen(self.text)
 
 <NoteScreen>:
     GridLayout:
@@ -25,7 +29,7 @@
         MDToolbar:
             title: 'Заметка'
             elevation: 10
-            left_action_items: [['menu', lambda x: app.go_to_main_screen()]]
+            left_action_items: [['arrow-left', lambda x: app.go_to_main_screen()]]
 
         MDLabel:
             id: content_lable

@@ -7,26 +7,15 @@ from kivymd.uix.label import MDLabel
 
 
 class MainScreen(Screen):
-    def main_screen_test(self):
-        print('main screen test')
-
-    def load_list(self):
-        for i in range(10):
-            self.ids.notes_list.add_widget(
-                OneLineListItem(text=f'Item {i+1}')
-            )
+    pass
 
 
 class NoteScreen(Screen):
-    def note_screen_test(self):
-        print('note screen test')
+    pass
 
 
 class NotebookApp(MDApp):
-    def __init__(self, **kwargs):
-        super(NotebookApp, self).__init__(**kwargs)
-        self.title = 'Блокнот'
-
+    title = 'Блокнот'
 
     def build(self):
         Builder.load_file('app.kv')
