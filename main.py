@@ -12,6 +12,16 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         # Установка жесткого эффекта прокрутки
         self.ids.scroll_view.effect_cls = StiffScrollEffect
+        self.note_number = 0
+
+    def add_note(self):
+        self.note_number += 1
+        note_title = f'Новая заметка {self.note_number}'
+        new_note = OneLineListItem(text=note_title)
+        new_note.bind(on_press=lambda x: print(note_title))
+        self.ids.notes_list.add_widget(
+                new_note
+            )
 
 class NoteScreen(Screen):
     pass
