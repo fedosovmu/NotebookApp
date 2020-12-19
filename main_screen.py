@@ -5,6 +5,10 @@ from kivymd.uix.menu import MDDropdownMenu
 from datetime import datetime
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton, MDFlatButton
+from kivymd.uix.list import OneLineAvatarIconListItem
+
+class DeleteMenuItem(OneLineAvatarIconListItem):
+    divider = False
 
 
 class MainScreen(Screen):
@@ -17,10 +21,14 @@ class MainScreen(Screen):
         self.note_number = 0
         # Создание диалога удаления записи
         self.delete_note_dialog = MDDialog(
-            text="Удалить?",
-            buttons=[
-                MDFlatButton(text="Отмена"), MDRaisedButton(text="Ок"),
+            text='Удалить?',
+            type="confirmation",
+            items=[
+                DeleteMenuItem(text='Удалить item')
             ],
+            buttons=[
+                MDFlatButton(text="Отмена", text_color=self.app.theme_cls.primary_color)
+            ]
         )
 
     def load_notes(self):
