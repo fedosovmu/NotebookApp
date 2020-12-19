@@ -17,7 +17,7 @@ class DbHandler:
     def create_tables_if_not_exists(self):
         sql = """
         CREATE TABLE IF NOT EXISTS notes (
-            note_id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             title TEXT NOT NULL,
             text TEXT
         );
@@ -25,15 +25,16 @@ class DbHandler:
         self.cursor.execute(sql)
         self.conn.commit()
 
-    def add_note(self, title, text=None):
+    def insert_note(self, title, text=None):
         if text is None:
             text = title
         sql = 'INSERT INTO notes (title, text) VALUES (?, ?)'
         self.cursor.execute(sql, (title, text))
         self.conn.commit()
+        return self.cursor.lastrowid
 
-    def select_note_titles(self):
-        sql = 'SELECT title FROM notes'
+    def select_notes(self):
+        sql = 'SELECT id, title FROM notes'
         self.cursor.execute(sql)
         rows = self.cursor.fetchall()
-        return  map(lambda x: x[0], rows)
+        return map(lambda x: {'id': x[0], 'title': x[1]}, rows)

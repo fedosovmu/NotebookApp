@@ -18,19 +18,20 @@ class MainScreen(Screen):
         self.note_number = 0
 
     def load_notes(self):
-        note_titles = self.app.db_handler.select_note_titles()
-        for title in note_titles:
-            self.add_note_to_screen(title)
+        notes = self.app.db_handler.select_notes()
+        for note in notes:
+            self.add_note_to_screen(note['id'], note['title'])
 
     def create_note(self):
         self.note_number += 1
         title = 'Новая заметка {}'.format(self.note_number)
-        self.add_note_to_screen(title)
-        self.app.db_handler.add_note(title)
+        db_id = self.app.db_handler.insert_note(title)
+        self.add_note_to_screen(db_id=db_id, title=title)
 
-    def add_note_to_screen(self, title):
+    def add_note_to_screen(self, db_id, title):
         new_note = OneLineListItem(text=title)
-        new_note.bind(on_press=lambda x: self.app.go_to_note_screen(new_note.text))
+        new_note.db_id = db_id
+        new_note.bind(on_press=lambda x: self.app.go_to_note_screen('db_id: {}'.format(new_note.db_id)))
         self.ids.notes_list.add_widget(
                 new_note
             )
