@@ -3,6 +3,8 @@ from kivymd.uix.list import OneLineListItem
 from kivymd.stiffscroll import StiffScrollEffect
 from kivymd.uix.menu import MDDropdownMenu
 from datetime import datetime
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDRaisedButton, MDFlatButton
 
 
 class MainScreen(Screen):
@@ -13,8 +15,13 @@ class MainScreen(Screen):
         self.ids.scroll_view.effect_cls = StiffScrollEffect
         self.load_notes()
         self.note_number = 0
-        # Создание выпадающего меню
-        self.menu = MDDropdownMenu()
+        # Создание диалога удаления записи
+        self.delete_note_dialog = MDDialog(
+            text="Удалить?",
+            buttons=[
+                MDFlatButton(text="Отмена"), MDRaisedButton(text="Ок"),
+            ],
+        )
 
     def load_notes(self):
         notes = self.app.db_handler.select_notes()
@@ -26,6 +33,10 @@ class MainScreen(Screen):
         title = 'Новая заметка {}'.format(self.note_number)
         db_id = self.app.db_handler.insert_note(title)
         self.add_note_to_screen(db_id=db_id, title=title)
+
+    def open_delete_note_dialoge(self, list_item):
+        print('Delete item db_id: {}?'.format(list_item.db_id))
+        self.delete_note_dialog.open()
 
     def list_item_on_press_callback(self, list_item):
         list_item.last_press_time = datetime.now()
@@ -40,7 +51,7 @@ class MainScreen(Screen):
             self.app.go_to_note_screen('db_id: {}'.format(list_item.db_id))
         else:
             # long press
-            print('long_press')
+            self.open_delete_note_dialoge(list_item)
 
     def add_note_to_screen(self, db_id, title):
         new_note = OneLineListItem(text=title)
@@ -53,4 +64,4 @@ class MainScreen(Screen):
         )
         self.ids.notes_list.add_widget(
                 new_note
-            )
+        )
