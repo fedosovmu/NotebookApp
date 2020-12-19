@@ -18,7 +18,7 @@ class MainScreen(Screen):
         self.note_number += 1
         note_title = f'Новая заметка {self.note_number}'
         new_note = OneLineListItem(text=note_title)
-        new_note.bind(on_press=lambda x: print(note_title))
+        new_note.bind(on_press=lambda x: self.app.go_to_note_screen(new_note.text))
         self.ids.notes_list.add_widget(
                 new_note
             )
@@ -33,6 +33,7 @@ class NotebookApp(MDApp):
     def build(self):
         Builder.load_file('app.kv')
         self.main_screen = MainScreen(name='main')
+        self.main_screen.app = self
         self.note_screen = NoteScreen(name='note')
         self.sm = ScreenManager()
         self.sm.add_widget(self.main_screen)
