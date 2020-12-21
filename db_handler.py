@@ -33,6 +33,11 @@ class DbHandler:
         self.conn.commit()
         return self.cursor.lastrowid
 
+    def delete_note(self, id):
+        sql = 'DELETE FROM notes WHERE id = ?'
+        self.cursor.execute(sql, (id,))
+        self.conn.commit()
+
     def select_notes(self):
         sql = 'SELECT id, title FROM notes'
         self.cursor.execute(sql)

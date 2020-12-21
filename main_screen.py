@@ -59,7 +59,9 @@ class MainScreen(Screen):
             self.app.go_to_note_screen('db_id: {}'.format(list_item.db_id))
         else:
             # long press
-            self.open_delete_note_dialoge(list_item)
+            # self.open_delete_note_dialoge(list_item)
+            self.ids.notes_list.remove_widget(list_item)
+            self.app.db_handler.delete_note(list_item.db_id)
 
     def add_note_to_screen(self, db_id, title):
         new_note = OneLineListItem(text=title)
