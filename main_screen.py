@@ -7,6 +7,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivymd.uix.list import OneLineAvatarIconListItem
 
+
 class DeleteMenuItem(OneLineAvatarIconListItem):
     divider = False
 
