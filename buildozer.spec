@@ -3,6 +3,9 @@
 # (str) Title of your application
 title = Блокнот
 
+icon.filename = app_icon.png
+presplash.filename = app_icon.png
+
 # (str) Package name
 package.name = myapp
 
