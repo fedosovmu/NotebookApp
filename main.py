@@ -13,7 +13,6 @@ class NoteScreen(Screen):
 
 class NotebookApp(MDApp):
     title = 'Мои заметки'
-    icon = 'app_icon.png'
 
     def build(self):
         self.db_handler = DbHandler()
